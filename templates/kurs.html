@@ -1,0 +1,18 @@
+<!doctype html>
+<head>
+  <title>Курсы</title>
+  <script type = "text/JavaScript">
+    <!--
+       function AutoRefresh( t ) {
+          setTimeout("location.reload(true);", t);
+       }
+    //-->
+ </script></head>
+<body onload = "JavaScript:AutoRefresh(1000*60);">
+  <h1>Курсы валют</h1>
+  {% if trv %}
+    {{ '<br>'.join(trv) | safe }}
+  {% else %}
+    No data!
+  {% endif %}
+</body>
