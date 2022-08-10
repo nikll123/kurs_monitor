@@ -10,29 +10,31 @@
  </script></head>
 <body onload = "JavaScript:AutoRefresh(1000*60);">
   <h1>Курсы валют</h1>
-  {% if trv %}
-    {{ '<br>'.join(trv) | safe }}
-  {% else %}
-    No data!
-  {% endif %}
 
-  <!-- <table>
-    {% for row in trv %}
-    {{row | safe}}
+  <table>
+    {% for tr in trv %}
     <tr>
+      {% for td in tr %}
         <td>
-          {row[0] | safe}}
+          {{td | safe}}
         </td>
-        <td>
-          {row[1] | safe}}
-        </td>
-        <td>
-          {row[2] | safe}}
-        </td>
-
+      {% endfor %}  
       </tr>
     {% endfor %}  
-  </table>  -->
+  </table> 
+
+  <h3>{{curr1}}</h3>
+  <table>
+    {% for tr in data1 %}
+    <tr>
+      {% for td in tr %}
+        <td>
+          {{td | safe}}
+        </td>
+      {% endfor %}  
+      </tr>
+    {% endfor %}  
+  </table> 
 
 
 </body>

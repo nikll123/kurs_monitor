@@ -5,6 +5,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
+import sqlite3
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kursdb.db'
@@ -44,6 +45,15 @@ last_price_dict= {
 'CHF' : [0.0, 0.0],
 }
 
+def last_price_dict_init():
+    conn = sqlite3.connect('kursdb.db')
+    for curr_id in currency_dict:
+        curr1 = currency_dict[curr_id]
+        cursor = conn.execute(f"select ratebuy, ratesell from kurs where currency = '{curr1}' order by id desc limit 1")
+        data1 = cursor.fetchall()
+        if len(data1) > 0:
+            last_price_dict[curr1]=[data1[0][0],data1[0][1]]
+
 @app.route('/')
 def index():
     # Загрузка страницы
@@ -53,13 +63,12 @@ def index():
     soup = bs4.BeautifulSoup(res.text)
     currencyElem = soup.select('td.white, td.valuta')
     trv = []
-    doRefreshTable = True
     for i in range (0, int(len(currencyElem) / 3)):
         i1=i*3
         i2=i1+1
         i3=i1+2
-        kurs_buy = currencyElem[i1].text
-        kurs_sell = currencyElem[i3].text
+        kurs_buy = float(currencyElem[i1].text)
+        kurs_sell = float(currencyElem[i3].text)
         valuta_txt = currencyElem[i2].findChild('img')
         if valuta_txt:
             valutaik = valuta_txt['src'][6:9]
@@ -68,17 +77,16 @@ def index():
                 save_fxrate(currency_id, kurs_buy, kurs_sell)
                 last_price_dict[currency_id][0] = kurs_buy
                 last_price_dict[currency_id][1] = kurs_sell
-                doRefreshTable = True
         else: # cross currency
             currency_id = currencyElem[i2].findChild('b').text
 
-        txt = currency_id + ' ' + kurs_buy + '/' + kurs_sell
-        trv.append(txt)
-        # trv.append([currency_id, kurs_buy, kurs_sell])
-    # if doRefreshTable:
-    #     for row in kurs.query.filter_by(currency='USD').all():
-            
-    return render_template('kurs.html', trv=trv)
+        trv.append([currency_id, kurs_buy, kurs_sell])
+    curr1 = 'USD'
+    conn = sqlite3.connect('kursdb.db')
+    cursor = conn.execute(f"select ratebuy, ratesell, ts from kurs where currency = '{curr1}' order by id desc")
+    data1 = cursor.fetchall()
+        
+    return render_template('kurs.html', trv=trv, curr1=curr1, data1 = data1)
 
 def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
     fxrate = kurs(currency=currency_id, ratesell= float(fxrate_sell), ratebuy=float(fxrate_buy), ts = str(datetime.datetime.now()) )
@@ -88,6 +96,8 @@ def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
 if __name__ == '__main__':
     if not os.path.exists('kursdb.db'):
         db.create_all()
+    
+    last_price_dict_init()
 
     app.run()
 
