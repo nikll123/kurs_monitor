@@ -103,22 +103,22 @@ if __name__ == '__main__':
 
 # kurs.query.filter_by(currency='USD').all()
 
-def delete_duplications()
-conn = sqlite3.connect('kursdb.db')
-for curr_id in currency_dict:
-   curr = currency_dict[curr_id]
-   cursor = conn.execute(f"select ratebuy, ratesell, ts, id, currency from kurs where currency = '{curr}' order by id")
-   lastkurs1 = 0 
-   lastkurs2 = 0 
-   lastts = ''
-   for row in cursor:
-      id = row[3]
-      kurs1 = row[0]
-      kurs2 = row[1]
-      if (lastkurs1 == kurs1 and lastkurs2 == kurs2):
-         conn.execute(f"delete from kurs where id = {id}")
-         conn.commit()
-      else:
-         lastkurs1 = kurs1
-         lastkurs2 = kurs2
+def delete_duplications():
+    conn = sqlite3.connect('kursdb.db')
+    for curr_id in currency_dict:
+        curr = currency_dict[curr_id]
+        cursor = conn.execute(f"select ratebuy, ratesell, ts, id, currency from kurs where currency = '{curr}' order by id")
+        lastkurs1 = 0 
+        lastkurs2 = 0 
+        lastts = ''
+        for row in cursor:
+            id = row[3]
+            kurs1 = row[0]
+            kurs2 = row[1]
+            if (lastkurs1 == kurs1 and lastkurs2 == kurs2):
+                conn.execute(f"delete from kurs where id = {id}")
+                conn.commit()
+            else:
+                lastkurs1 = kurs1
+                lastkurs2 = kurs2
 
