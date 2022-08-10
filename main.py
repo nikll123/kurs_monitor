@@ -53,6 +53,7 @@ def index():
     soup = bs4.BeautifulSoup(res.text)
     currencyElem = soup.select('td.white, td.valuta')
     trv = []
+    doRefreshTable = True
     for i in range (0, int(len(currencyElem) / 3)):
         i1=i*3
         i2=i1+1
@@ -67,11 +68,16 @@ def index():
                 save_fxrate(currency_id, kurs_buy, kurs_sell)
                 last_price_dict[currency_id][0] = kurs_buy
                 last_price_dict[currency_id][1] = kurs_sell
+                doRefreshTable = True
         else: # cross currency
             currency_id = currencyElem[i2].findChild('b').text
 
         txt = currency_id + ' ' + kurs_buy + '/' + kurs_sell
         trv.append(txt)
+        # trv.append([currency_id, kurs_buy, kurs_sell])
+    # if doRefreshTable:
+    #     for row in kurs.query.filter_by(currency='USD').all():
+            
     return render_template('kurs.html', trv=trv)
 
 def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
@@ -85,3 +91,4 @@ if __name__ == '__main__':
 
     app.run()
 
+# kurs.query.filter_by(currency='USD').all()
