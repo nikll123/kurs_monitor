@@ -1,0 +1,46 @@
+name: wa
+channels:
+  - defaults
+dependencies:
+  - beautifulsoup4=4.10.0
+  - brotlipy=0.7.0
+  - bzip2=1.0.8
+  - ca-certificates=2022.4.26
+  - certifi=2022.6.15
+  - cffi=1.15.0
+  - charset-normalizer=2.0.4
+  - click=8.0.4
+  - colorama=0.4.4
+  - cryptography=36.0.0
+  - dataclasses=0.8
+  - flask=2.0.3
+  - flask-sqlalchemy=2.5.1
+  - greenlet=1.1.1
+  - idna=3.3
+  - itsdangerous=2.0.1
+  - jinja2=3.0.3
+  - libffi=3.4.2
+  - markupsafe=2.1.1
+  - openssl=1.1.1o
+  - pip=21.2.4
+  - pycparser=2.21
+  - pyopenssl=22.0.0
+  - pysocks=1.7.1
+  - python=3.10.4
+  - requests=2.27.1
+  - setuptools=61.2.0
+  - soupsieve=2.3.1
+  - sqlalchemy=1.4.32
+  - sqlite=3.38.3
+  - tk=8.6.12
+  - tzdata=2022a
+  - urllib3=1.26.9
+  - vc=14.2
+  - vs2015_runtime=14.27.29016
+  - werkzeug=2.0.3
+  - wheel=0.37.1
+  - win_inet_pton=1.1.0
+  - wincertstore=0.2
+  - xz=5.2.5
+  - zlib=1.2.12
+prefix: C:\Users\nikll\.conda\envs\wa
