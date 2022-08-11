@@ -83,7 +83,7 @@ def index():
         trv.append([currency_id, kurs_buy, kurs_sell])
     curr1 = 'USD'
     conn = sqlite3.connect('kursdb.db')
-    cursor = conn.execute(f"select ratebuy, ratesell, ts from kurs where currency = '{curr1}' order by id desc")
+    cursor = conn.execute(f"select ratebuy, ratesell, substr(ts, 1, 16) from kurs where currency = '{curr1}' order by id desc")
     data1 = cursor.fetchall()
         
     return render_template('kurs.html', trv=trv, curr1=curr1, data1 = data1)
@@ -92,14 +92,6 @@ def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
     fxrate = kurs(currency=currency_id, ratesell= float(fxrate_sell), ratebuy=float(fxrate_buy), ts = str(datetime.datetime.now()) )
     db.session.add (fxrate)
     db.session.commit()
-
-if __name__ == '__main__':
-    if not os.path.exists('kursdb.db'):
-        db.create_all()
-    
-    last_price_dict_init()
-
-    app.run()
 
 # kurs.query.filter_by(currency='USD').all()
 
@@ -121,4 +113,13 @@ def delete_duplications():
             else:
                 lastkurs1 = kurs1
                 lastkurs2 = kurs2
+
+
+if __name__ == '__main__':
+    if not os.path.exists('kursdb.db'):
+        db.create_all()
+    
+    last_price_dict_init()
+
+    app.run()
 
