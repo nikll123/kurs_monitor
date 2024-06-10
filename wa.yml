@@ -43,4 +43,4 @@ dependencies:
   - wincertstore=0.2
   - xz=5.2.5
   - zlib=1.2.12
-prefix: C:\Users\nikll\.conda\envs\wa
+prefix: C:\Users\mkv\Miniconda3\envs\wa
