@@ -30,8 +30,8 @@ currency_dict= {
 'fun' : 'GBP',
 'czk' : 'CZK',
 'knd' : 'CAD',
-'swe' : 'SEK',
-'chf' : 'CHF'
+'swe' : 'CHF',   # WTF
+'chf' : 'SEK'    # WTF
 }
 
 last_price_dict= {
@@ -55,7 +55,8 @@ def last_price_dict_init():
             last_price_dict[curr1]=[data1[0][0],data1[0][1]]
 
 @app.route('/')
-def index():
+@app.route('/<string:curr1>')
+def index(curr1=None):
     # Загрузка страницы
     # print('Загружается страница %s...' % source_url)
     res = requests.get(source_url)
@@ -77,16 +78,19 @@ def index():
                 save_fxrate(currency_id, kurs_buy, kurs_sell)
                 last_price_dict[currency_id][0] = kurs_buy
                 last_price_dict[currency_id][1] = kurs_sell
+            log_url =  f'<a href="/{currency_id}">{currency_id}</a>'
         else: # cross currency
             currency_id = currencyElem[i2].findChild('b').text
+            log_url = currency_id
 
-        trv.append([currency_id, kurs_buy, kurs_sell])
-    curr1 = 'USD'
+        trv.append([log_url, kurs_buy, kurs_sell])
+    if curr1 == None:
+        curr1 = 'USD'
     conn = sqlite3.connect('kursdb.db')
     cursor = conn.execute(f"select ratebuy, ratesell, substr(ts, 1, 16) from kurs where currency = '{curr1}' order by id desc")
-    data1 = cursor.fetchall()
+    data1 = cursor.fetchmany(1000)
         
-    return render_template('kurs.html', trv=trv, curr1=curr1, data1 = data1)
+    return render_template('kurs.html', trv=trv, curr1=curr1, data1 = data1, source_url=source_url)
 
 def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
     fxrate = kurs(currency=currency_id, ratesell= float(fxrate_sell), ratebuy=float(fxrate_buy), ts = str(datetime.datetime.now()) )

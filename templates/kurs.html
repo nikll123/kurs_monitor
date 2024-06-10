@@ -1,5 +1,6 @@
 <!doctype html>
 <head>
+  <link rel="shortcut icon" href="/static/favicon.ico">
   <title>Курсы</title>
   <script type = "text/JavaScript">
     <!--
@@ -23,12 +24,14 @@
     {% endfor %}  
   </table> 
 
+  <a href="{{ source_url }}">{{ source_url }}</a>
+
   <h3>{{curr1}}</h3>
   <table>
     <tr>
-      <td>&nbsp;&nbsp;Buy&nbsp;&nbsp;</td>
-      <td>&nbsp;&nbsp;Sell&nbsp;&nbsp;</td>
-      <td>&nbsp;&nbsp;Time&nbsp;&nbsp;</td>
+      <th>&nbsp;&nbsp;Buy&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;Sell&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;Time&nbsp;&nbsp;</th>
     </tr>
     {% for tr in data1 %}
     <tr>
