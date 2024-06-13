@@ -119,12 +119,11 @@ def delete_duplications():
                 lastkurs2 = kurs2
 
 
-if __name__ == '__main__':
-    if not os.path.exists('kursdb.db'):
-        with app.app_context():
-            db.create_all()
-    
-    last_price_dict_init()
+if not os.path.exists('kursdb.db'):
+    db.create_all()
 
+last_price_dict_init()
+
+if __name__ == '__main__':
     app.run()
 
