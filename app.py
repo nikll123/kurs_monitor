@@ -121,9 +121,11 @@ def delete_duplications():
 
 if not os.path.exists('kursdb.db'):
     with app.app_context():
-        print("db.create_all()")
+        print(">> db.create_all()")
+        print(">> "+str(db.get_tables_for_bind()[0]))
         db.create_all()
-        last_price_dict_init()
+
+last_price_dict_init()
 
 print(str(db.Model.metadata.tables))
 
