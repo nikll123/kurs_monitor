@@ -123,10 +123,9 @@ if not os.path.exists('kursdb.db'):
     with app.app_context():
         print("db.create_all()")
         db.create_all()
+        last_price_dict_init()
 
 print(str(db.Model.metadata.tables))
-
-last_price_dict_init()
 
 if __name__ == '__main__':
     app.run()
