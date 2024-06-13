@@ -1,44 +1,50 @@
-# packages in environment at C:\Users\mkv\Miniconda3\envs\wa:
-#
-# Name                    Version                   Build  Channel
-beautifulsoup4            4.10.0             pyh06a4308_0  
-brotlipy                  0.7.0           py310h2bbff1b_1002  
-bzip2                     1.0.8                he774522_0  
-ca-certificates           2022.4.26            haa95532_0  
-certifi                   2022.6.15       py310haa95532_0  
-cffi                      1.15.0          py310h2bbff1b_1  
-charset-normalizer        2.0.4              pyhd3eb1b0_0  
-click                     8.0.4           py310haa95532_0  
-colorama                  0.4.4              pyhd3eb1b0_0  
-cryptography              36.0.0          py310h21b164f_0  
-dataclasses               0.8                pyh6d0b6a4_7  
-flask                     2.0.3              pyhd3eb1b0_0  
-flask-sqlalchemy          2.5.1              pyhd3eb1b0_0  
-greenlet                  1.1.1           py310hd77b12b_0  
-idna                      3.3                pyhd3eb1b0_0  
-itsdangerous              2.0.1              pyhd3eb1b0_0  
-jinja2                    3.0.3              pyhd3eb1b0_0  
-libffi                    3.4.2                hd77b12b_4  
-markupsafe                2.1.1           py310h2bbff1b_0  
-openssl                   1.1.1o               h2bbff1b_0  
-pip                       21.2.4          py310haa95532_0  
-pycparser                 2.21               pyhd3eb1b0_0  
-pyopenssl                 22.0.0             pyhd3eb1b0_0  
-pysocks                   1.7.1           py310haa95532_0  
-python                    3.10.4               hbb2ffb3_0  
-requests                  2.27.1             pyhd3eb1b0_0  
-setuptools                61.2.0          py310haa95532_0  
-soupsieve                 2.3.1              pyhd3eb1b0_0  
-sqlalchemy                1.4.32          py310h2bbff1b_0  
-sqlite                    3.38.3               h2bbff1b_0  
-tk                        8.6.12               h2bbff1b_0  
-tzdata                    2022a                hda174b7_0  
-urllib3                   1.26.9          py310haa95532_0  
-vc                        14.2                 h21ff451_1  
-vs2015_runtime            14.27.29016          h5e58377_2  
-werkzeug                  2.0.3              pyhd3eb1b0_0  
-wheel                     0.37.1             pyhd3eb1b0_0  
-win_inet_pton             1.1.0           py310haa95532_0  
-wincertstore              0.2             py310haa95532_2  
-xz                        5.2.5                h8cc25b3_1  
-zlib                      1.2.12               h8cc25b3_2  
+# ubuntu
+# conda list --explicit>wa.txt
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/linux-64/_libgcc_mutex-0.1-main.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ca-certificates-2024.3.11-h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ld_impl_linux-64-2.38-h1181459_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libstdcxx-ng-11.2.0-h1234567_1.conda
+https://repo.anaconda.com/pkgs/main/noarch/tzdata-2024a-h04d1e81_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libgomp-11.2.0-h1234567_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/_openmp_mutex-5.1-1_gnu.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libgcc-ng-11.2.0-h1234567_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/bzip2-1.0.8-h5eee18b_6.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libffi-3.4.4-h6a678d5_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libuuid-1.41.5-h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ncurses-6.4-h6a678d5_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/openssl-3.0.13-h7f8727e_2.conda
+https://repo.anaconda.com/pkgs/main/linux-64/xz-5.4.6-h5eee18b_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/zlib-1.2.13-h5eee18b_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/readline-8.2-h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/tk-8.6.14-h39e8969_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/sqlite-3.45.3-h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/python-3.10.14-h955ad1f_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/blinker-1.6.2-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/brotli-python-1.0.9-py310h6a678d5_8.conda
+https://repo.anaconda.com/pkgs/main/linux-64/certifi-2024.6.2-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/charset-normalizer-2.0.4-pyhd3eb1b0_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/click-8.1.7-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/greenlet-3.0.1-py310h6a678d5_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/idna-3.7-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/itsdangerous-2.2.0-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/markupsafe-2.1.3-py310h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/pysocks-1.7.1-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/setuptools-69.5.1-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/soupsieve-2.5-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/typing_extensions-4.11.0-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/wheel-0.43.0-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/beautifulsoup4-4.12.3-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/jinja2-3.1.4-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/pip-24.0-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/typing-extensions-4.11.0-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/urllib3-2.2.1-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/werkzeug-3.0.3-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/bs4-4.12.3-py39hd3eb1b0_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/flask-3.0.3-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/requests-2.32.2-py310h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/sqlalchemy-2.0.25-py310h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/flask-sqlalchemy-3.1.1-py310h06a4308_0.conda
