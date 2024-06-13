@@ -120,7 +120,8 @@ def delete_duplications():
 
 
 if not os.path.exists('kursdb.db'):
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
 last_price_dict_init()
 
