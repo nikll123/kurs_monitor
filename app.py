@@ -1,14 +1,18 @@
 import requests
 import datetime
-import bs4
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 import sqlite3
+import bs4
+# from sqlalchemy import Integer, String
+# from sqlalchemy.orm import Mapped, mapped_column
 
+fileDbName='kursdb.db'
+dbpath = 'instance/' + fileDbName
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kursdb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + fileDbName
 db = SQLAlchemy(app)
 
 class kurs(db.Model):
@@ -17,7 +21,7 @@ class kurs(db.Model):
     ratebuy  = db.Column(db.REAL, nullable=False)
     ratesell = db.Column(db.REAL, nullable=False)
     ts       = db.Column(db.TEXT, nullable=False)
-    
+
     def __repr__(self):
         return f'id={self.id}, currency={self.currency}, ratebuy={self.ratebuy}, ratesell={self.ratesell}, ts={self.ts}'
 
@@ -46,7 +50,7 @@ last_price_dict= {
 }
 
 def last_price_dict_init():
-    conn = sqlite3.connect('kursdb.db')
+    conn = sqlite3.connect(dbpath)
     for curr_id in currency_dict:
         curr1 = currency_dict[curr_id]
         cursor = conn.execute(f"select ratebuy, ratesell from kurs where currency = '{curr1}' order by id desc limit 1")
@@ -86,7 +90,7 @@ def index(curr1=None):
         trv.append([log_url, kurs_buy, kurs_sell])
     if curr1 == None:
         curr1 = 'USD'
-    conn = sqlite3.connect('kursdb.db')
+    conn = sqlite3.connect(dbpath)
     cursor = conn.execute(f"select ratebuy, ratesell, substr(ts, 1, 16) from kurs where currency = '{curr1}' order by id desc")
     data1 = cursor.fetchmany(1000)
         
@@ -100,7 +104,7 @@ def save_fxrate(currency_id, fxrate_buy, fxrate_sell):
 # kurs.query.filter_by(currency='USD').all()
 
 def delete_duplications():
-    conn = sqlite3.connect('kursdb.db')
+    conn = sqlite3.connect(dbpath)
     for curr_id in currency_dict:
         curr = currency_dict[curr_id]
         cursor = conn.execute(f"select ratebuy, ratesell, ts, id, currency from kurs where currency = '{curr}' order by id")
@@ -119,15 +123,13 @@ def delete_duplications():
                 lastkurs2 = kurs2
 
 
-if not os.path.exists('kursdb.db'):
+if not os.path.exists(dbpath):
     with app.app_context():
-        print(">> db.create_all()")
-        print(">> "+str(db.get_tables_for_bind()[0]))
         db.create_all()
+        print(">> База данных создана")
 
 last_price_dict_init()
 
-print(str(db.Model.metadata.tables))
 
 if __name__ == '__main__':
     app.run()
