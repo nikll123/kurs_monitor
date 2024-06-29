@@ -11,6 +11,7 @@ import bs4
 
 fileDbName='kursdb.db'
 dbpath = 'instance/' + fileDbName
+print(f'db file: {os.path.abspath(dbpath)}')
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + fileDbName
 db = SQLAlchemy(app)
